@@ -407,15 +407,18 @@
 
 #let quote(body) = block(
   width: 100%,
-  inset: (top: 0.8em, bottom: 0.8em),
-  align(center, grid(
-    columns: (auto, auto, auto),
-    column-gutter: 0.15em,
-    align: horizon,
-    text(size: 24pt, fill: c-def, "“"),
-    body,
-    text(size: 24pt, fill: c-def, "”"),
-  )),
+  inset: (top: 0.75em, bottom: 0.85em),
+  box(width: 100%, {
+    place(top + left, dy: -0.15em, text(size: 24pt, fill: c-def, "“"))
+    place(bottom + right, dy: 0.45em, text(size: 24pt, fill: c-def, "”"))
+    pad(
+      left: 1.8em,
+      right: 1.8em,
+      top: 0.45em,
+      bottom: 0.45em,
+      align(center, body),
+    )
+  }),
 )
 
 #let proof(body) = block(

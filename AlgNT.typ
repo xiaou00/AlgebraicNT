@@ -27,3 +27,5 @@
 #include "chapters/chapter_06.typ"
 
 #include "chapters/chapter_07.typ"
+
+#include "chapters/chapter_08.typ"
