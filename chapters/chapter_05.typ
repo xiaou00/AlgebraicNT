@@ -1157,7 +1157,7 @@ automorphism uniquely to $G$.
 === Frobenius on the Residue Field
 
 #proposition(title: "Finite-Field Frobenius")[
-  Let $frak(q)|frak(p)$ and put $f=f_(frak(p))$. The residue extension is
+  Let $frak(q)|frak(p)$, assume that $kappa(frak(p))$ and $kappa(frak(q))$ are finite, and put $f=f_(frak(p))=[kappa(frak(q)):kappa(frak(p))]$. The residue extension is
   Galois and cyclic:
 
   $ "Gal"(kappa(frak(q)) slash kappa(frak(p)))=lr(⟨ phi_(frak(q) slash frak(p)) ⟩) $
@@ -1298,6 +1298,50 @@ an entire $I_(frak(q))$-coset of lifts rather than a distinguished lift.
   $"Spec" B->"Spec" A$. Changing the chosen point conjugates the lift, which
   is why the intrinsic datum attached to $frak(p)$ is a conjugacy class rather
   than an individual group element.
+]
+
+#example(title: [Frobenius Elements in $QQ(i) slash QQ$])[
+  Let $L=QQ(i)$, $B=ZZ[i]$, and
+
+  $ G="Gal"(L slash QQ)={"id",c}, quad c(i)=-i $
+
+  Let $p$ be an odd rational prime and choose $frak(q)|(p)$. Since $p$ is
+  unramified, $"Frob"_(frak(q))$ is defined. Applying its congruence
+  characterization to $i in B$ gives
+
+  $ "Frob"_(frak(q)) (i) equiv i^p mod frak(q) $
+
+  But $i^4=1$, so
+
+  $ i^p=cases(
+    i & quad p equiv 1 mod 4,
+    -i & quad p equiv 3 mod 4
+  ) $
+
+  The two roots $i$ and $-i$ remain distinct modulo $frak(q)$ because $p$ is
+  odd. Hence
+
+  $ "Frob"_(frak(q))=cases(
+    "id" & quad p equiv 1 mod 4,
+    c & quad p equiv 3 mod 4
+  ) $
+
+  Concretely:
+
+  + For $p=5$, one has $(5)=(2+i)(2-i)$. If
+    $frak(q)_5=(2+i)$, then $f_(frak(q)_5 slash (5))=1$ and
+    $"Frob"_(frak(q)_5)="id"$. The same holds for the other prime above $5$.
+
+  + For $p=3$, the ideal $frak(q)_3=(3)$ is inert and
+    $kappa(frak(q)_3) tilde.eq FF_9$. The map $x mapsto x^3$ sends
+    $i mapsto i^3=-i$, so $"Frob"_(frak(q)_3)=c$. Its order is two, equal to
+    the residue degree.
+
+  + For $p=2$, one has $(2)=(1+i)^2$. If $frak(q)_2=(1+i)$, then
+    $D_(frak(q)_2)=I_(frak(q)_2)=G$ and
+    $kappa(frak(q)_2)=FF_2$. Both $"id"$ and $c$ induce the identity on this
+    residue field, so the residue Frobenius has two lifts. This is why no
+    Frobenius element is defined at the ramified prime $2$.
 ]
 
 === Artin Symbols and Splitting
@@ -1468,7 +1512,8 @@ without choosing $frak(q)|frak(p)$.
     "conj" & quad p equiv 3 mod 4
   ) $
 
-  Indeed, the first case is complete splitting and the second is inertness.
+  This is exactly the Frobenius computation above: the first case is complete
+  splitting and the second is inertness.
   If $G$ is identified with ${plus.minus 1}$ by sending complex conjugation to
   $-1$, this Artin symbol is the Legendre symbol
   $lr((frac(-1,p)))$.

@@ -21,3 +21,9 @@
 #include "chapters/chapter_04.typ"
 
 #include "chapters/chapter_05.typ"
+
+#part[Local Fields]
+
+#include "chapters/chapter_06.typ"
+
+#include "chapters/chapter_07.typ"
