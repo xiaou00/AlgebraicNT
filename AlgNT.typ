@@ -22,7 +22,7 @@
 
 #include "chapters/chapter_05.typ"
 
-#part[Local Fields]
+#part[Local & Global Fields]
 
 #include "chapters/chapter_06.typ"
 
@@ -31,3 +31,5 @@
 #include "chapters/chapter_08.typ"
 
 #include "chapters/chapter_09.typ"
+
+#include "chapters/chapter_10.typ"

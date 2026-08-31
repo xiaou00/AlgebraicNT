@@ -188,7 +188,7 @@ $ abs(x)_(frak(p)):=c^(v_(frak(p)) (x)) $
 
   $ v_(frak(q)) (x)=e v_(frak(p)) (x) quad "for " x in K^times $
 
-  the absolute value $x mapsto c^(v_(frak(q)) (x)/e)$ extends
+  the absolute value $x mapsto c^(v_(frak(q)) (x)\/e)$ extends
   $abs(dot)_(frak(p))$. Uniqueness identifies it with $rho$.
 ]
 
@@ -303,7 +303,7 @@ one generator.
   does not contain $(p)$.
 ]
 
-#corollary(title: "Local Dedekind--Kummer")[
+#corollary(title: [Local Dedekind--Kummer])[
   Let $(R,frak(m),k)$ be a noetherian local ring, let $g in R[X]$ be monic,
   and put
 
@@ -810,4 +810,1142 @@ $ overline(phi):l_1->l_2 $
 #quote[
   Unramified extensions move along the closed fiber; totally ramified
   extensions move in the valuation direction.
+]
+
+== Totally Ramified Extensions
+
+Let $A$ be a complete DVR with fraction field $K$, maximal ideal
+$frak(p)$, and residue field $k$. For a finite separable extension
+$L slash K$, let $B$ be the integral closure of $A$ in $L$. The preceding
+sections showed that $B$ is a complete DVR with a unique maximal ideal
+$frak(q)$, and that
+
+$ [L:K]=e_(L slash K) f_(L slash K) $
+
+It also isolated the maximal unramified subextension. We now turn to the
+opposite extreme: a #emph[totally ramified] extension has
+
+$ e_(L slash K)=[L:K], quad f_(L slash K)=1 $
+
+so the residue field does not change and the entire degree is recorded by the
+value group. Eisenstein polynomials are the natural equations for precisely
+this phenomenon.
+
+#quote[
+  An unramified extension enlarges the residue field; an Eisenstein equation
+  cuts the valuation step into smaller pieces.
+]
+
+== Eisenstein Polynomials
+
+=== The Classical Criterion over $ZZ$
+
+We begin with the familiar global statement. It is easy to apply, but its
+real explanation is local and valuation-theoretic.
+
+#definition(title: "Eisenstein at a Rational Prime")[
+  Let
+
+  $ f(X)=a_n X^n+a_(n-1)X^(n-1)+dots+a_1 X+a_0 in ZZ[X] $
+
+  with $n>=1$. For a prime number $p$, the polynomial $f$ is
+  #emph[Eisenstein at $p$] if
+
+  $ p divides.not a_n $
+
+  $ p divides a_i quad "for every " 0<=i<n $
+
+  $ p^2 divides.not a_0 $
+]
+
+#theorem(title: "Classical Eisenstein Criterion")[
+  If $f in ZZ[X]$ is Eisenstein at a prime $p$, then $f$ is irreducible in
+  $QQ[X]$.
+]
+
+#proof[
+  Dividing by the content does not affect irreducibility over $QQ$, so Gauss's
+  lemma lets us work with a primitive polynomial in $ZZ[X]$. Suppose that
+
+  $ f=g h $
+
+  with $g,h in ZZ[X]$ of positive degree. Reduction modulo $p$ gives
+
+  $ overline(f)=overline(a)_n X^n $
+
+  Since $FF_p[X]$ is a domain and $overline(a)_n!=0$, both
+  $overline(g)$ and $overline(h)$ must be nonzero monomials. Because both
+  factors have positive degree, their constant coefficients are divisible by
+  $p$. Their product $a_0$ is then divisible by $p^2$, contradicting the
+  Eisenstein hypothesis.
+]
+
+#example(title: "The Basic Family")[
+  For every prime $p$ and every $n>=1$,
+
+  $ X^n-p $
+
+  is Eisenstein at $p$. Hence it is irreducible over $QQ$, and
+  $[QQ(root(n,p)):QQ]=n$.
+]
+
+#example(title: "A Shift Can Reveal Eisenstein Behavior")[
+  The polynomial $X^4+1$ is not Eisenstein in its displayed form, but the
+  invertible change of variable $X mapsto X+1$ gives
+
+  $ (X+1)^4+1=X^4+4X^3+6X^2+4X+2 $
+
+  which is Eisenstein at $2$. Therefore $X^4+1$ is irreducible over $QQ$.
+
+  More generally,
+
+  $ Phi_p (X+1)=((X+1)^p-1)/X $
+
+  is Eisenstein at $p$, giving the usual proof that the $p$th cyclotomic
+  polynomial $Phi_p$ is irreducible.
+]
+
+#remark(title: "A Sufficient, Not Necessary, Criterion")[
+  Eisenstein's criterion does not classify all irreducible polynomials.
+  For example, many irreducible polynomials have unit constant term at every
+  prime and therefore cannot be Eisenstein. Its strength is that a small
+  amount of divisibility data forces irreducibility immediately.
+]
+
+=== Eisenstein Polynomials over a DVR
+
+Let $A$ now be an arbitrary DVR with maximal ideal
+$frak(p)=(pi_A)$, normalized valuation $v_(frak(p))$, and fraction field
+$K$. The uniformizer $pi_A$ replaces the rational prime $p$.
+
+#definition(title: "Eisenstein Polynomial of a DVR")[
+  A monic polynomial
+
+  $ f(X)=X^n+a_(n-1)X^(n-1)+dots+a_1 X+a_0 in A[X] $
+
+  is #emph[Eisenstein] if
+
+  $ a_i in frak(p) quad "for every " 0<=i<n $
+
+  $ a_0 in.not frak(p)^2 $
+
+  Equivalently,
+
+  $ v_(frak(p)) (a_i)>=1 quad "for " 0<=i<n, quad v_(frak(p)) (a_0)=1 $
+
+  Thus the constant coefficient is a uniformizer up to multiplication by a
+  unit.
+]
+
+#remark(title: "What the Reduction Remembers")[
+  Modulo the maximal ideal, every degree-$n$ Eisenstein polynomial becomes
+
+  $ overline(f)=X^n $
+
+  so the closed fiber has just one point, with multiplicity $n$. The extra
+  condition $a_0 in.not frak(p)^2$ says that this multiplicity comes from one
+  genuine valuation step rather than from a polynomial that was already
+  divisible too deeply.
+]
+
+#theorem(title: "Eisenstein Irreducibility over a DVR")[
+  Let $A$ be a DVR with fraction field $K$. Every Eisenstein polynomial
+  $f in A[X]$ is irreducible in both $A[X]$ and $K[X]$.
+]
+
+#proof[
+  Suppose that $f=g h$ in $K[X]$, with $g$ and $h$ monic of positive degree.
+  Since $f$ is monic, every coefficient of $g$ and $h$ is integral over $A$.
+  A DVR is integrally closed, so in fact $g,h in A[X]$.
+
+  Reduction modulo $frak(p)$ gives
+
+  $ X^n=overline(g)overline(h) $
+
+  Both factors are monic, hence
+
+  $ overline(g)=X^r, quad overline(h)=X^(n-r) $
+
+  for some $0<r<n$. Their constant coefficients both lie in $frak(p)$, so
+  their product $a_0$ lies in $frak(p)^2$, contradicting
+  $v_(frak(p)) (a_0)=1$. Thus $f$ is irreducible over $K$, and therefore also
+  over $A$.
+]
+
+#corollary(title: "Eisenstein at a Prime of a Dedekind Domain")[
+  Let $R$ be a Dedekind domain with fraction field $F$, let
+  $frak(p)$ be a nonzero prime ideal, and let
+
+  $ f(X)=X^n+a_(n-1)X^(n-1)+dots+a_0 in R[X] $
+
+  Suppose
+
+  $ a_i in frak(p) quad "for " 0<=i<n, quad a_0 in.not frak(p)^2 $
+
+  Then $f$ is irreducible over $F$.
+]
+
+#proof[
+  The localization $R_(frak(p))$ is a DVR with fraction field $F$, and the
+  displayed conditions say exactly that $f$ is Eisenstein over
+  $R_(frak(p))$. Apply the DVR criterion.
+]
+
+#remark(title: "Why Localization Is the Right Generalization")[
+  The classical test only uses divisibility at one prime. Passing from
+  $R$ to $R_(frak(p))$ discards every other prime and turns the chosen prime
+  into a uniformizer. Eisenstein's criterion is therefore intrinsically a
+  local statement, even when it is first encountered over $ZZ$.
+]
+
+=== An Eisenstein Root Produces a DVR
+
+Irreducibility is only the first consequence. The quotient by an Eisenstein
+polynomial already carries the valuation ring of a totally ramified field.
+
+#theorem(title: "The Eisenstein Quotient Is a DVR")[
+  Let $A$ be a DVR and let $f in A[X]$ be Eisenstein of degree $n$. Put
+
+  $ C:=A[X] slash (f)=A[pi] $
+
+  where $pi$ is the image of $X$. Then $C$ is a DVR with uniformizer $pi$.
+  Its fraction field has degree $n$ over $K$, its residue field is
+  $A slash frak(p)$, and
+
+  $ frak(p)C=(pi)^n $
+]
+
+#proof[
+  Eisenstein irreducibility embeds $C$ into the field
+  $K[X] slash (f)$, so $C$ is a domain. Since
+
+  $ C slash frak(p)C tilde.eq k[X] slash (X^n) $
+
+  the local Dedekind--Kummer result shows that $C$ has a unique maximal ideal
+
+  $ frak(q)=(frak(p),pi) $
+
+  Write
+
+  $ f(X)=X^n+a_(n-1)X^(n-1)+dots+a_1 X+a_0 $
+
+  The constant coefficient $a_0$ generates $frak(p)$, and the relation
+  $f(pi)=0$ gives
+
+  $ a_0=-pi(a_1+a_2 pi+dots+a_(n-1)pi^(n-2)+pi^(n-1)) $
+
+  Hence $frak(p)C subset.eq (pi)$ and
+  $frak(q)=(frak(p),pi)=(pi)$. The ring $C$ is a one-dimensional noetherian
+  local domain whose nonzero maximal ideal is principal, so it is a DVR with
+  uniformizer $pi$.
+
+  Since a DVR is integrally closed, $C$ is already the integral closure of
+  $A$ in its fraction field: every element integral over $A$ is also integral
+  over $C$ and hence lies in $C$. Its residue field is $k$, and it is free of
+  rank $n$ over $A$ with basis $1,pi,dots,pi^(n-1)$. The fundamental identity
+  therefore gives
+
+  $ n=e_(C slash A) f_(C slash A)=e_(C slash A) $
+
+  so $frak(p)C=(pi)^n$.
+]
+
+#corollary(title: "Every Eisenstein Polynomial Defines a Totally Ramified Extension")[
+  If $f in A[X]$ is Eisenstein of degree $n$ and
+
+  $ L:=K[X] slash (f) $
+
+  then $L slash K$ is totally ramified of degree $n$. Its valuation ring is
+  $A[pi]$, and $pi$ is a uniformizer.
+]
+
+#proof[
+  The preceding theorem shows that $A[pi]$ is a DVR with fraction field $L$.
+  In particular it is integrally closed, so it is the integral closure of
+  $A$ in $L$. The equality $frak(p)A[pi]=(pi)^n$ gives ramification index
+  $n$ and residue degree $1$.
+]
+
+#quote[
+  Eisenstein does more than prove irreducibility: it writes down the
+  valuation ring and its uniformizer at the same time.
+]
+
+=== Characterizing Totally Ramified Extensions
+
+The converse uses completeness through the fact that the integral closure is
+a single complete DVR.
+
+#theorem(title: "Uniformizers Characterize Total Ramification")[
+  Let $A$ be a complete DVR, let $L slash K$ be finite separable of degree
+  $n$, and let $B$ be the integral closure of $A$ in $L$. For a uniformizer
+  $pi$ of $B$, the following are equivalent.
+
+  + The extension $L slash K$ is totally ramified.
+
+  + One has $B=A[pi]$, and the minimal polynomial of $pi$ over $K$ is
+    Eisenstein over $A$.
+
+  Consequently, in a totally ramified extension #emph[every] uniformizer of
+  $B$ is a primitive element and has Eisenstein minimal polynomial.
+]
+
+#proof[
+  First suppose that $B=A[pi]$ and the minimal polynomial of $pi$ is
+  Eisenstein. The Eisenstein quotient theorem gives
+
+  $ frak(p)B=(pi)^n=frak(q)^n $
+
+  so the ramification index is $n=[L:K]$.
+
+  Conversely, suppose $L slash K$ is totally ramified. Then
+
+  $ v_(frak(q)) (K^times)=n ZZ $
+
+  We claim that $1,pi,dots,pi^(n-1)$ are linearly independent over $K$.
+  Indeed, for nonzero $c_i in K$ the valuations
+
+  $ v_(frak(q)) (c_i pi^i)=n v_(frak(p)) (c_i)+i $
+
+  are distinct modulo $n$. A nontrivial sum of these terms has a unique term
+  of smallest valuation and therefore cannot vanish. Since $[L:K]=n$, these
+  powers form a basis and $L=K(pi)$.
+
+  Write the minimal polynomial as
+
+  $ f(X)=X^n+a_(n-1)X^(n-1)+dots+a_1 X+a_0 $
+
+  The element $pi$ is integral, and $A$ is integrally closed, so
+  $f in A[X]$. In the relation
+
+  $ pi^n+a_(n-1)pi^(n-1)+dots+a_1 pi+a_0=0 $
+
+  the leading term has $frak(q)$-valuation $n$. For cancellation, the minimum
+  valuation must occur at least twice. The terms
+  $a_i pi^i$ for $1<=i<n$ have valuation congruent to $i$ modulo $n$, while
+  the constant and leading terms have valuation congruent to zero. It follows
+  that
+
+  $ v_(frak(q)) (a_0)=n, quad v_(frak(q)) (a_i)>=n quad "for " 1<=i<n $
+
+  Since $v_(frak(q)) |_K=n v_(frak(p))$, we obtain
+
+  $ v_(frak(p)) (a_0)=1, quad v_(frak(p)) (a_i)>=1 $
+
+  Thus $f$ is Eisenstein. The ring $A[pi]$ is therefore a DVR with fraction
+  field $L$. Every element of $B$ is integral over $A[pi]$, and $A[pi]$ is
+  integrally closed, so $B=A[pi]$.
+]
+
+#remark(title: "The Meaning of the Power Basis")[
+  In an unramified extension, a lift of a residue-field generator gives a
+  power basis. In a totally ramified extension, a uniformizer gives the power
+  basis
+
+  $ 1,pi,dots,pi^(n-1) $
+
+  The two constructions are complementary: one generates through distinct
+  residue classes, the other through distinct valuation classes modulo
+  $n ZZ$.
+]
+
+=== A Newton-Polygon Generalization
+
+Eisenstein corresponds to the simplest possible Newton polygon. This viewpoint
+also detects irreducibility when the constant coefficient has valuation
+greater than one.
+
+#definition(title: "Newton Polygon")[
+  Let
+
+  $ f(X)=sum_(i=0)^n a_i X^i in K[X], quad a_0 a_n!=0 $
+
+  The #emph[Newton polygon] $"NP"_(frak(p)) (f)$ is the lower convex hull in
+  $RR^2$ of the points
+
+  $ (i,v_(frak(p)) (a_i)), quad 0<=i<=n $
+
+  Terms with $a_i=0$ are regarded as having infinite height and do not affect
+  the lower hull.
+]
+
+For a monic Eisenstein polynomial, every intermediate point lies above the
+line joining $(0,1)$ to $(n,0)$. Its Newton polygon is therefore a single
+segment of slope $-1/n$.
+
+#theorem(title: [Eisenstein--Dumas Criterion])[
+  Let $A$ be a DVR and let
+
+  $ f(X)=X^n+a_(n-1)X^(n-1)+dots+a_0 in A[X] $
+
+  Suppose $v_(frak(p)) (a_0)=r>0$, with $gcd(n,r)=1$, and
+
+  $ v_(frak(p)) (a_i)>=r(n-i)/n quad "for every " 0<i<n $
+
+  Then $f$ is irreducible over $K$.
+]
+
+#proofsketch[
+  The hypotheses say that the Newton polygon consists of the single segment
+  from $(0,r)$ to $(n,0)$, of slope $-r/n$. Under multiplication, the slopes
+  of Newton polygons combine with their horizontal lengths. If
+  $f=g h$ with $g$ monic of degree $d$, then the polygon of $g$ can only use
+  the slope $-r/n$. Its total vertical change is therefore $d r/n$, which
+  must be an integer because the endpoints of a Newton polygon have integral
+  coordinates. Since $gcd(n,r)=1$, this forces $n$ to divide $d$. No proper
+  factor can have such a degree, so $f$ is irreducible.
+]
+
+#example(title: "Beyond the Basic Eisenstein Criterion")[
+  For a uniformizer $pi_A$ and positive integers $n,r$ with
+  $gcd(n,r)=1$,
+
+  $ X^n-pi_A^r $
+
+  is irreducible over $K$. When $r>1$, it is not Eisenstein in the basic
+  sense, but its one-segment Newton polygon still forces irreducibility.
+]
+
+#remark(title: "Why Coprimality Appears")[
+  The fraction $r/n$ is the valuation of every root predicted by the unique
+  Newton slope. If $r$ and $n$ have a common divisor, this denominator becomes
+  smaller and a proper factor may carry an integral portion of the segment.
+  For an ordinary Eisenstein polynomial $r=1$, coprimality is automatic.
+]
+
+== Tame and Wild Ramification
+
+Let $L slash K$ be a finite separable extension as in the beginning of the
+chapter, and assume throughout this section that the residue extension
+
+$ l:=B slash frak(q) quad "over" quad k:=A slash frak(p) $
+
+is separable. Write
+
+$ e:=e_(L slash K), quad f:=f_(L slash K), quad n=[L:K]=e f $
+
+and let $p="char"(K)>=0$.
+
+The ramification index measures how much one valuation step in $K$ is
+subdivided inside $L$. Whether this subdivision is visible to first-order
+calculus depends on whether $e$ is invertible in the residue field.
+
+=== The Ramification Dictionary
+
+#definition(title: "Tame and Wild Ramification")[
+  Assume first that $p>0$.
+
+  + The extension $L slash K$ is #emph[tamely ramified] if
+
+    $ p divides.not e $
+
+  + It is #emph[wildly ramified] if
+
+    $ p divides e $
+
+  + It is #emph[totally tamely ramified] if $f=1$ and
+    $p divides.not e$.
+
+  + It is #emph[totally wildly ramified] if $f=1$ and $e$ is a power of
+    $p$.
+
+  When $p=0$, every finite extension with separable residue extension is
+  tamely ramified and wild ramification does not occur.
+]
+
+Every unramified extension is tame, since its ramification index is $1$.
+When $p>0$ and the residue extension is separable, tame and wild are mutually
+exclusive and exhaust all possibilities.
+
+The word #emph[totally] in “totally wildly ramified” includes two separate
+requirements: the residue field is unchanged, and the entire degree is a
+power of the residue characteristic. Thus a totally ramified extension can
+be wild without being totally wildly ramified.
+
+#block(breakable: false)[
+  #align(center, table(
+    columns: (1.15fr, 1.1fr, 1.3fr),
+    align: (center, center, left),
+    inset: (x: 10pt, y: 5pt),
+    stroke: none,
+    table.header(
+      table.cell(align: center)[#text(fill: c-thm)[#emph[Behavior]]],
+      table.cell(align: center)[#text(fill: c-thm)[#emph[Numerical condition]]],
+      table.cell(align: center)[#text(fill: c-thm)[#emph[Arithmetic meaning]]],
+    ),
+    table.hline(stroke: 0.75pt + c-thm),
+    table.vline(x: 1, stroke: 0.75pt + c-thm),
+    [unramified], [$e=1$], [only the residue field changes],
+    [tamely ramified], [$p divides.not e$], [$e$ remains invertible in $k$],
+    [wildly ramified], [$p divides e$], [the derivative can vanish modulo $frak(q)$],
+    [totally ramified], [$f=1$], [only the value group changes],
+    [totally tame], [$f=1, p divides.not e$], [a radical of a uniformizer],
+    [totally wild], [$f=1, e=p^a$], [purely wild valuation growth],
+  ))
+]
+
+#remark(title: "Why Tame Means Controllable")[
+  Suppose a construction leads to an equation
+
+  $ X^e-u=0 $
+
+  with $u equiv 1 mod frak(q)$. At the residue root $X=1$, the derivative is
+  $e$. In the tame case $p divides.not e$, this derivative is a unit, so
+  Hensel's lemma extracts an $e$th root of $u$. In the wild case
+  $p divides e$, the derivative vanishes on the closed fiber and this simple
+  lifting argument loses its force.
+
+  #quote[
+    Tame ramification is ramification whose multiplicity is still visible to
+    the derivative; wild ramification begins when characteristic $p$ erases
+    that multiplicity.
+  ]
+]
+
+#example(title: "Three Basic Eisenstein Behaviors")[
+  Let $K=QQ_p$.
+
+  + If $gcd(n,p)=1$, then $X^n-p$ defines a totally tamely ramified extension
+    of degree $n$.
+
+  + The polynomial $X^p-p$ defines a totally wildly ramified extension of
+    degree $p$.
+
+  + For $p=3$, the polynomial $X^6-3$ is Eisenstein and defines a totally
+    ramified extension of degree $6$. It is wildly ramified because
+    $3 divides 6$, but it is not totally wildly ramified because $6$ is not a
+    power of $3$.
+]
+
+=== Behavior in Towers and Composita
+
+#proposition(title: "Transitivity in Towers")[
+  Let
+
+  $ K subset.eq E subset.eq L $
+
+  be a tower of finite extensions of fraction fields of complete DVRs, with
+  separable residue extensions. If both layers have any one of the following
+  properties, then the full extension $L slash K$ has the same property:
+
+  + unramified;
+
+  + tamely ramified;
+
+  + wildly ramified;
+
+  + totally ramified;
+
+  + totally tamely ramified;
+
+  + totally wildly ramified.
+]
+
+#proof[
+  Ramification indices and residue degrees multiply:
+
+  $ e_(L slash K)=e_(L slash E)e_(E slash K) $
+
+  $ f_(L slash K)=f_(L slash E)f_(E slash K) $
+
+  Separability is transitive in residue-field towers. Products of integers
+  prime to $p$ remain prime to $p$, products of integers divisible by $p$
+  remain divisible by $p$, and products of powers of $p$ remain powers of
+  $p$. Each assertion follows from these observations.
+]
+
+#remark(title: "Transitive Does Not Mean Two-Way")[
+  If $L slash K$ is wildly ramified, one of the two layers in a tower must be
+  wild, but both need not be. Likewise, a tame extension may contain a
+  nontrivial unramified layer followed by a totally tame layer. The
+  proposition only asserts that a property shared by both layers survives
+  composition.
+]
+
+#example(title: "Totally Ramified Composita Need Not Be Totally Ramified")[
+  Over $QQ_3$, both
+
+  $ QQ_3 (sqrt(3)) slash QQ_3, quad QQ_3 (sqrt(6)) slash QQ_3 $
+
+  are totally tamely ramified quadratic extensions, defined by Eisenstein
+  polynomials. Their compositum contains
+
+  $ sqrt(2)=sqrt(3)sqrt(6)/3 $
+
+  and $QQ_3 (sqrt(2)) slash QQ_3$ is the unramified quadratic extension.
+  Therefore the compositum is not totally ramified over $QQ_3$.
+
+  The failure comes from combining different valuation directions: their
+  quotient can cancel the ramified part and expose a residue-field extension.
+]
+
+=== Classification of Totally Tame Extensions
+
+The tame case admits an exceptionally concrete classification: after changing
+the chosen uniformizer of the base by a unit, the whole extension is obtained
+by taking one radical.
+
+#theorem(title: "Totally Tame Extensions Are Radicals of a Uniformizer")[
+  Let $L slash K$ have degree $n$, and suppose the residue extension is
+  separable of characteristic $p>=0$ with $p divides.not n$ when $p>0$.
+  Then the following are equivalent.
+
+  + The extension $L slash K$ is totally tamely ramified.
+
+  + For some uniformizer $pi_A$ of $A$,
+
+    $ L=K(pi_A^(1\/n)) $
+
+  In this description $X^n-pi_A$ is Eisenstein, and
+  $pi_A^(1\/n)$ is a uniformizer of $B$.
+]
+
+#proof[
+  If $L=K(pi_A^(1\/n))$, the polynomial $X^n-pi_A$ is Eisenstein. It defines a
+  totally ramified extension of degree $n$, and the hypothesis
+  $p divides.not n$ makes the extension tame.
+
+  Conversely, assume that $L slash K$ is totally tamely ramified. Choose
+  uniformizers $pi_A$ of $A$ and $pi_B$ of $B$. Since
+
+  $ v_(frak(q)) (pi_B^n)=n=v_(frak(q)) (pi_A) $
+
+  there is a unit $u in B^times$ such that
+
+  $ pi_B^n=u pi_A $
+
+  The residue fields are equal. Choose $u_A in A^times$ whose residue equals
+  that of $u$, and replace $pi_A$ by $u_A pi_A$. After replacing $u$ by
+  $u/u_A$, we may assume
+
+  $ u equiv 1 mod frak(q) $
+
+  Consider $g(X)=X^n-u in B[X]$. Its reduction has the root $1$, and
+
+  $ overline(g)'(1)=n!=0 " in " k $
+
+  because $p divides.not n$. Hensel's lemma gives $r in B^times$ satisfying
+  $r equiv 1 mod frak(q)$ and $r^n=u$. Put
+
+  $ pi:=pi_B/r $
+
+  Then $pi$ is a uniformizer of $B$ and
+
+  $ pi^n=pi_B^n/r^n=pi_A $
+
+  Every uniformizer generates a totally ramified extension, by the preceding
+  section, so
+
+  $ L=K(pi)=K(pi_A^(1/n)) $
+]
+
+#remark(title: "What Is and Is Not Canonical")[
+  The totally tame extension is generated by an $n$th root of
+  #emph[some] uniformizer, not necessarily the first uniformizer one writes
+  down. Multiplying $pi_A$ by a unit changes the radical equation. Hensel's
+  lemma absorbs precisely the principal-unit part that is an $n$th power.
+]
+
+#example(title: [The Ramified Quadratic Extensions of $QQ_3$])[
+  The two extensions
+
+  $ QQ_3 (sqrt(3)), quad QQ_3 (sqrt(6)) $
+
+  are totally tamely ramified of degree $2$. They correspond to the two
+  uniformizers $3$ and $6=2 dot 3$. The unit $2$ represents the nontrivial
+  square class in $FF_3^times$, so the two radical extensions are not
+  $QQ_3$-isomorphic inside a fixed algebraic closure.
+]
+
+=== Separating the Tame and Wild Parts
+
+For a totally ramified extension, factor the degree as
+
+$ e=m p^a, quad gcd(m,p)=1 $
+
+when $p>0$. The prime-to-$p$ part and the $p$-power part are realized by a
+unique intermediate field.
+
+#theorem(title: [The Tame--Wild Decomposition in the Totally Ramified Case])[
+  Let $L slash K$ be totally ramified. There is a unique intermediate field
+  $E$ such that
+
+  + $E slash K$ is totally tamely ramified;
+
+  + $L slash E$ is totally wildly ramified.
+
+  More precisely, if
+
+  $ [L:K]=m p^a, quad gcd(m,p)=1 $
+
+  then
+
+  $ [E:K]=m, quad [L:E]=p^a $
+
+  When the residue characteristic is zero, take $E=L$.
+]
+
+#proof[
+  Assume $p>0$; the characteristic-zero case is immediate. Choose
+  uniformizers $pi_A$ of $A$ and $pi_B$ of $B$. As in the totally tame
+  classification, write
+
+  $ pi_B^(m p^a)=u pi_A $
+
+  and multiply $pi_A$ by the lift of the residue of $u$ so that
+  $u equiv 1 mod frak(q)$. Since $p divides.not m$, Hensel's lemma gives a
+  unit $r in B^times$ with
+
+  $ r^m=u $
+
+  Put
+
+  $ pi_E:=pi_B^(p^a)/r $
+
+  Then
+
+  $ pi_E^m=pi_B^(m p^a)/r^m=pi_A $
+
+  and define $E:=K(pi_E)$. The polynomial $X^m-pi_A$ is Eisenstein, so
+  $[E:K]=m$ and $E slash K$ is totally tamely ramified. It follows that
+
+  $ [L:E]=p^a $
+
+  and, since the residue field remains unchanged throughout the tower,
+  $L slash E$ is totally wildly ramified.
+
+  For uniqueness, let $E'$ have the same two properties. Multiplicativity of
+  degrees forces
+
+  $ [E':K]=m, quad [L:E']=p^a $
+
+  Repeating the construction with the fixed relation
+  $pi_B^(m p^a)=u pi_A$ shows that $E'$ is generated by another $m$th root
+  $pi_E'$ of the same uniformizer $pi_A$. Hence
+
+  $ zeta:=pi_E' slash pi_E $
+
+  is an $m$th root of unity contained in $L$. Because $p divides.not m$, the
+  extension $K(zeta) slash K$ is unramified. But it is also a subextension of
+  the totally ramified extension $L slash K$, so it must be trivial. Thus
+  $zeta in K$, and $E'=E$.
+]
+
+#remark(title: "Why an Extension Cannot Be Both Nontrivially Unramified and Totally Ramified")[
+  Any subextension of a totally ramified extension has residue degree $1$.
+  An unramified subextension has ramification index $1$. The fundamental
+  identity then forces its degree to be $1$. This tiny observation is the
+  rigidity behind the uniqueness argument.
+]
+
+#corollary(title: "The Maximal Tame Subextension")[
+  Let $L slash K$ be any finite separable extension with separable residue
+  extension. There is a unique intermediate field $E$ such that
+
+  + $E slash K$ is tamely ramified;
+
+  + $L slash E$ is totally wildly ramified.
+
+  If $F$ is the maximal unramified subextension of $L slash K$ and
+
+  $ e_(L slash K)=m p^a, quad gcd(m,p)=1 $
+
+  then
+
+  $ [F:K]=f, quad [E:F]=m, quad [L:E]=p^a $
+]
+
+#proof[
+  The extension $L slash F$ is totally ramified. Apply the totally ramified
+  tame--wild decomposition to obtain
+
+  $ F subset.eq E subset.eq L $
+
+  with $E slash F$ totally tame and $L slash E$ totally wild. Since
+  $F slash K$ is unramified, it is tame; transitivity in towers shows that
+  $E slash K$ is tame.
+
+  Conversely, suppose $E'$ is tame and $L slash E'$ is totally wild. The
+  field $E'$ must contain $F$: otherwise the compositum $E'F slash E'$ would
+  be a nontrivial unramified subextension of the totally ramified extension
+  $L slash E'$. Once $F subset.eq E'$, uniqueness of the totally ramified
+  decomposition for $L slash F$ gives $E'=E$.
+]
+
+#remark(title: "Galois-Theoretic Preview")[
+  If $L slash K$ is Galois, the subgroup
+
+  $ "Gal"(L slash E) $
+
+  is the $p$-primary part of the inertia group. It is called the
+  #emph[wild inertia group]. The quotient retains the unramified and tame
+  directions, while this subgroup measures the genuinely characteristic-$p$
+  obstruction.
+]
+
+#quote[
+  Every finite extension with separable residue extension has a unique tame
+  layer; everything above it is totally wild.
+]
+
+== Krasner's Lemma
+
+Hensel's lemma says that an approximate root with nonvanishing derivative
+determines an exact root. Krasner's lemma answers a different question:
+when an algebraic number $beta$ is sufficiently close to another algebraic
+number $alpha$, how are the fields $K(beta)$ and $K(alpha)$ related?
+
+The answer is strikingly rigid. If $beta$ lies closer to $alpha$ than to any
+other conjugate of $alpha$, then $beta$ already remembers $alpha$:
+
+$ K(alpha) subset.eq K(beta) $
+
+=== Conjugate Distances and the Krasner Radius
+
+Let $K$ be the fraction field of a complete DVR. Its absolute value extends
+uniquely to a fixed algebraic closure $overline(K)$.
+
+#lemma(title: "Galois Invariance of the Absolute Value")[
+  For every $sigma in Aut_K (overline(K))$ and every
+  $gamma in overline(K)$,
+
+  $ abs(sigma(gamma))=abs(gamma) $
+
+  Consequently,
+
+  $ abs(sigma(gamma)-sigma(delta))=abs(gamma-delta) $
+
+  for all $gamma,delta in overline(K)$.
+]
+
+#proof[
+  The map
+
+  $ gamma mapsto abs(sigma(gamma)) $
+
+  is another absolute value on $overline(K)$ extending the given absolute
+  value on $K$. Uniqueness of the extension makes it equal to
+  $abs(dot)$. Applying this to $gamma-delta$ proves the second formula.
+]
+
+#remark(title: "A Galois Automorphism Relabels without Stretching")[
+  Think of the conjugates of an algebraic element as a finite constellation
+  of points. A $K$-automorphism may permute the labels on these points, but it
+  cannot stretch or shrink the constellation: every pairwise distance is
+  preserved.
+
+  This is special to the complete henselian setting. The absolute value has a
+  unique extension to $overline(K)$, so applying an automorphism cannot
+  secretly replace it by a different notion of size.
+]
+
+#definition(title: "Krasner Radius")[
+  Let $alpha in overline(K)$ be separable over $K$. Its
+  #emph[Krasner radius] is
+
+  $ rho_K (alpha):=min_(sigma(alpha)!=alpha) abs(alpha-sigma(alpha)) $
+
+  where $sigma$ runs through $Aut_K (overline(K))$. If
+  $alpha in K$, we put $rho_K (alpha)=infinity$.
+
+  Thus $rho_K (alpha)$ is the distance from $alpha$ to its nearest distinct
+  $K$-conjugate.
+]
+
+Separability is essential here: it makes the conjugates distinct, and there
+are only finitely many of them. Hence
+$rho_K (alpha)>0$ whenever $alpha$ is separable.
+
+#remark(title: "Nearest-Neighbor Safety Radius")[
+  The number $rho_K (alpha)$ is simply the distance from $alpha$ to its
+  nearest competitor among the other conjugates. Moving by strictly less than
+  this amount cannot reach, or even become confused with, another conjugate.
+
+  It is useful to picture a label attached to $alpha$ together with a safety
+  zone of radius $rho_K (alpha)$. Any point inside this zone still knows which
+  conjugate it is approximating.
+]
+
+#definition(title: "Belonging to an Algebraic Element")[
+  Let $alpha,beta in overline(K)$, with $alpha$ separable over $K$. We say
+  that #emph[$beta$ belongs to $alpha$] if
+
+  $ abs(beta-alpha)<abs(beta-sigma(alpha)) $
+
+  for every $sigma in Aut_K (overline(K))$ with
+  $sigma(alpha)!=alpha$.
+]
+
+#proposition(title: "Equivalent Distance Form")[
+  The element $beta$ belongs to $alpha$ if and only if
+
+  $ abs(beta-alpha)<rho_K (alpha) $
+
+  Equivalently,
+
+  $ abs(beta-alpha)<abs(alpha-sigma(alpha)) $
+
+  for every distinct conjugate $sigma(alpha)$.
+]
+
+#proof[
+  Suppose
+
+  $ abs(beta-alpha)<abs(alpha-sigma(alpha)) $
+
+  The ultrametric triangle with vertices
+  $alpha,beta,sigma(alpha)$ has one side strictly shorter than another, so
+  the two longer sides have equal length:
+
+  $ abs(beta-sigma(alpha))=abs(alpha-sigma(alpha)) $
+
+  Hence $beta$ belongs to $alpha$. Conversely, if
+  $abs(beta-alpha)<abs(beta-sigma(alpha))$, the same rigid-triangle argument
+  gives
+
+  $ abs(alpha-sigma(alpha))=abs(beta-sigma(alpha)) $
+
+  and therefore
+  $abs(beta-alpha)<abs(alpha-sigma(alpha))$. Taking the minimum over all
+  distinct conjugates proves the claim.
+]
+
+#remark(title: "The Ultrametric Shortcut")[
+  In ordinary Euclidean geometry, moving $alpha$ slightly changes its
+  distance to every other point by a small amount. Ultrametric geometry is
+  more rigid. If
+
+  $ abs(beta-alpha)<abs(alpha-sigma(alpha)) $
+
+  then the short move from $alpha$ to $beta$ does not change the longer
+  distance at all:
+
+  $ abs(beta-sigma(alpha))=abs(alpha-sigma(alpha)) $
+
+  Thus the perturbation is invisible from the viewpoint of every other
+  conjugate. This rigid-isosceles phenomenon is why the two formulations of
+  “belongs to” are exactly equivalent rather than merely comparable.
+]
+
+#remark(title: "The Conjugate Balls Are Disjoint")[
+  For every conjugate $alpha_i$ of $alpha$, consider
+
+  $ B_i:={x in overline(K):abs(x-alpha_i)<rho_K (alpha)} $
+
+  These balls are pairwise disjoint. If one point belonged to both
+  $B_i$ and $B_j$, the ultrametric inequality would give
+
+  $ abs(alpha_i-alpha_j)<rho_K (alpha) $
+
+  contradicting the definition of the radius. Thus a point inside one of
+  these balls identifies one conjugate unambiguously.
+]
+
+If $f in K[X]$ is the separable minimal polynomial of $alpha$, then
+
+$ f'(alpha)=product_(sigma(alpha)!=alpha) (alpha-sigma(alpha)) $
+
+The derivative therefore measures the product of all conjugate separations,
+while the Krasner radius records the smallest one. Hensel's lemma and
+Krasner's lemma are controlled by two closely related measures of how
+isolated a root is.
+
+#remark(title: "Product versus Bottleneck")[
+  The derivative $f'(alpha)$ combines #emph[all] conjugate distances into one
+  product. The Krasner radius keeps only the smallest distance, because the
+  nearest conjugate is the first one with which a perturbation could be
+  confused.
+
+  In this sense, Hensel's derivative is an aggregate separation measure,
+  while the Krasner radius is the bottleneck separation.
+]
+
+=== Statement and Proof
+
+#theorem(title: "Krasner's Lemma")[
+  Let $K$ be the fraction field of a complete DVR, and let
+  $alpha,beta in overline(K)$ with $alpha$ separable over $K$. If $beta$
+  belongs to $alpha$, equivalently if
+
+  $ abs(beta-alpha)<rho_K (alpha) $
+
+  then
+
+  $ K(alpha) subset.eq K(beta) $
+]
+
+#remark(title: "The Proof in One Sentence")[
+  If $beta$ did not determine $alpha$, there would remain a symmetry that
+  fixes $beta$ but moves $alpha$ to another conjugate; distance preservation
+  would then make $beta$ equally close to both, contradicting the strict
+  nearest-conjugate condition.
+]
+
+#proof[
+  Suppose instead that $alpha in.not K(beta)$. Then the minimal polynomial of
+  $alpha$ over $K(beta)$ has degree greater than one. Since $alpha$ is
+  separable over $K$, it is also separable over $K(beta)$. There is therefore
+  a $K(beta)$-embedding of $K(alpha,beta)$ into $overline(K)$ that sends
+  $alpha$ to a distinct conjugate. Extend it to an automorphism
+
+  $ sigma in Aut_(K(beta)) (overline(K)) $
+
+  Thus $sigma(beta)=beta$ but $sigma(alpha)!=alpha$. Galois invariance of the
+  absolute value gives
+
+  $ abs(beta-alpha)=abs(sigma(beta-alpha))=abs(beta-sigma(alpha)) $
+
+  This contradicts the assumption that $beta$ belongs to $alpha$. Hence
+  $alpha in K(beta)$ and $K(alpha) subset.eq K(beta)$.
+]
+
+#remark(title: "Why the Inclusion Points This Way")[
+  The hypothesis says that $beta$ contains enough information to identify
+  the particular conjugate $alpha$. It does not say that $alpha$ contains all
+  the information carried by $beta$. Thus Krasner gives
+
+  $ K(alpha) subset.eq K(beta) $
+
+  rather than the reverse inclusion.
+
+  One may think of $beta$ as a very accurate measurement of $alpha$ together
+  with some additional algebraic data. The accuracy recovers $alpha$, while
+  the extra data may make $K(beta)$ strictly larger.
+]
+
+#quote[
+  A sufficiently accurate algebraic approximation cannot forget the field
+  generated by the conjugate it approximates.
+]
+
+=== Immediate Consequences
+
+#corollary(title: "Equality from a Degree Bound")[
+  Let $n=[K(alpha):K]$. If
+
+  $ abs(beta-alpha)<rho_K (alpha) $
+
+  and $[K(beta):K]<=n$, then
+
+  $ K(beta)=K(alpha) $
+]
+
+#proof[
+  Krasner's lemma gives
+
+  $ K(alpha) subset.eq K(beta) $
+
+  Hence
+
+  $ n<=[K(beta):K]<=n $
+
+  so equality holds throughout.
+]
+
+#remark(title: "The Degree Squeeze")[
+  Krasner supplies the difficult half, namely the field inclusion. Once this
+  is known, degrees turn it into equality:
+
+  $ [K(alpha):K]<=[K(beta):K] $
+
+  If an independent argument bounds the right-hand side by the left-hand
+  side, there is no room for a proper extension. This simple squeeze is the
+  standard way Krasner's lemma is used in practice.
+]
+
+#corollary(title: "Stability of Primitive Elements")[
+  Let $L=K(alpha)$ be finite separable. Every algebraic
+  $beta in overline(K)$ satisfying
+
+  $ abs(beta-alpha)<rho_K (alpha), quad [K(beta):K]<=[L:K] $
+
+  also generates $L$.
+]
+
+This is the practical form used most often: once a primitive element is
+separated from its other conjugates, every sufficiently close algebraic
+element of no larger degree defines the same extension.
+
+#example(title: [A Krasner Ball around $sqrt(p)$])[
+  Let $p$ be odd and put
+
+  $ K=QQ_p, quad alpha=sqrt(p) $
+
+  The two conjugates are $alpha$ and $-alpha$, so
+
+  $ rho_K (alpha)=abs(2alpha)_p=abs(alpha)_p=p^(-1/2) $
+
+  Therefore every algebraic $beta in overline(QQ_p)$ with
+
+  $ abs(beta-sqrt(p))_p<p^(-1/2) $
+
+  satisfies
+
+  $ QQ_p (sqrt(p)) subset.eq QQ_p (beta) $
+
+  If $beta$ has degree at most two over $QQ_p$, the two fields are equal.
+]
+
+#remark(title: "The Inequality Must Be Strict")[
+  If $beta$ lies exactly on the boundary
+  $abs(beta-alpha)=rho_K (alpha)$, it may be equally close to two conjugates.
+  Then the preferred branch is no longer determined, and the conclusion of
+  Krasner's lemma can fail. The strict inequality is the nonarchimedean
+  analogue of staying inside one isolated component.
+]
+
+#remark(title: "A Nonarchimedean Voronoi Cell")[
+  In elementary geometry, a Voronoi cell consists of the points closest to
+  one chosen center. The condition
+
+  $ abs(beta-alpha)<rho_K (alpha) $
+
+  places $beta$ inside a particularly simple nonarchimedean Voronoi cell
+  around $alpha$. The strict boundary separates this cell from those of all
+  other conjugates. Krasner's lemma says that belonging to this metric cell
+  has an algebraic consequence: the field of its center is forced into the
+  field of the point.
+]
+
+=== What Krasner's Lemma Does
+
+Krasner's lemma is less an algorithm for finding roots than a stability
+principle for field extensions.
+
++ #emph[It turns metric closeness into field containment.] The hypothesis is
+  expressed entirely using distances, but the conclusion is the algebraic
+  inclusion $K(alpha) subset.eq K(beta)$.
+
++ #emph[It makes primitive elements stable.] Small perturbations of a
+  primitive element continue to generate the same field, once their degrees
+  cannot increase.
+
++ #emph[It makes roots continuous in the correct sense.] If the coefficients
+  of a separable irreducible polynomial are perturbed slightly, its roots
+  remain in disjoint Krasner balls around the original roots. Matching
+  degrees then shows that the perturbed polynomial defines the same field
+  extension and has the same splitting field.
+
++ #emph[It connects local and global fields.] Coefficients in a completion
+  can be approximated by coefficients in the dense global field. Krasner's
+  lemma ensures that a sufficiently close global polynomial realizes the
+  prescribed local extension after completion.
+
++ #emph[It explains local constancy.] Finite separable extensions do not vary
+  continuously through infinitely many different algebraic types under tiny
+  coefficient perturbations; within a sufficiently small neighborhood, the
+  generated extension is constant.
+
+#remark(title: "Geometric Reading")[
+  The conjugates of $alpha$ are the geometric points in the generic fiber of
+  the finite étale algebra defined by its minimal polynomial. The disjoint
+  Krasner balls are analytic neighborhoods separating these points. Placing
+  $beta$ inside the ball around $alpha$ selects one branch, and Krasner's
+  lemma says that this analytic choice forces the corresponding algebraic
+  field to be present inside $K(beta)$.
+]
+
+#quote[
+  Hensel lifts an isolated residue root; Krasner preserves an isolated
+  conjugate under perturbation.
 ]
