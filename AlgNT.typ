@@ -33,3 +33,11 @@
 #include "chapters/chapter_09.typ"
 
 #include "chapters/chapter_10.typ"
+
+#include "chapters/chapter_11.typ"
+
+#include "chapters/chapter_12.typ"
+
+#part[Analytic Methods]
+
+#include "chapters/chapter_13.typ"
