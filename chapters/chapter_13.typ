@@ -801,7 +801,7 @@ oscillations from their transform.
   logarithm, and $psi(x)$ also includes prime powers. Unique factorization
   gives
 
-  $ psi(x)=sum_(m>=1) theta.alt(x^(1/m)) $
+  $ psi(x)=sum_(1<=m<=log_2 x) theta.alt(x^(1/m)) $
 ]
 
 #lemma(title: "Chebyshev Growth Bound")[
@@ -863,9 +863,11 @@ oscillations from their transform.
 
   $ F(1+z)=integral_0^infinity e^(-z u) dif nu(u) $
 
-  If $A(x)=a x$, then $dif nu(u)=a dif u$ and the right side is $a/z$.
-  Thus the boundary value of $F(1+z)-a/z$ on $z=i t$ is the Fourier transform,
-  in the distributional sense, of $dif nu-a dif u$.
+  The model $A(x)=a(x-1)$ has the same asymptotic as $a x$ and gives
+  $dif nu(u)=a dif u$, so the right side is $a/z$. Altering $A$ on a bounded
+  interval contributes only a holomorphic term. Thus the boundary value of
+  $F(1+z)-a/z$ on $z=i t$ is the Fourier transform, in the distributional
+  sense, of $dif nu-a dif u$.
 
   Multiply this boundary value by the compactly supported Fourier transform
   of a smooth averaging kernel. Fourier inversion and the Riemann--Lebesgue
@@ -964,8 +966,4 @@ oscillations from their transform.
 
   $ abs({x in ("Spec" ZZ)^((1)) | abs(kappa(x))<=X})
     tilde "Li"(X) $
-
-  The logarithmic derivative counts the same closed points together with all
-  repetitions $p^m$, exactly as powers of Frobenius appear when logarithmically
-  differentiating a Hasse--Weil Euler product.
 ]
